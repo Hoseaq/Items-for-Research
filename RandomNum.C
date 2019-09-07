@@ -37,7 +37,7 @@ void RandomNum()
   histr -> Draw();
   c1 -> Print("rn_histr.png");
 
-  TF1 *funcFit = new TF1("funcFit","gaus",200, -10, 10);
+  TF1 *funcFit = new TF1("funcFit","gaus",-10, 10);
   histx -> Fit("funcFit","R");
   histy -> Fit("funcFit","R");
   histr -> Fit("funcFit", "R");
