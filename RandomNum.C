@@ -38,15 +38,15 @@ void RandomNum()
   c1 -> Print("rn_histr.png");
 
   TF1 *funcFit = new TF1("funcFit","gaus",-10, 10);
-  TH1D* hist2x = new TH1D("hist2x","", 200, -10,10);
-  TH1D* hist2y = new TH1D("hist2y","", 200, -10,10);
-  TH1D* hist2r = new TH1D("hist2r","", 100,0,10);
+  // TH1D* hist2x = new TH1D("hist2x","", 200, -10,10);
+  // TH1D* hist2y = new TH1D("hist2y","", 200, -10,10);
+  // TH1D* hist2r = new TH1D("hist2r","", 100,0,10);
 
-  hist2x -> Fit("funcFit","R");
+  histx -> Fit("funcFit","R");
   c1 -> Print("rn_hist2x.png");
-  hist2y -> Fit("funcFit","R");
+  histy -> Fit("funcFit","R");
   c1 -> Print("rn_hist2y.png");
-  hist2r -> Fit("funcFit", "R");
+  histr -> Fit("funcFit", "R");
   c1 -> Print("rn_hist2r.png");
 
 
