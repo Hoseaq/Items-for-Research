@@ -43,11 +43,20 @@ void RandomNum()
   // TH1D* hist2r = new TH1D("hist2r","", 100,0,10);
 
   histx -> Fit("funcFit","R");
-  c1 -> Print("rn_hist2x.png");
+  c1 -> Print("rn_histx.png");
   histy -> Fit("funcFit","R");
-  c1 -> Print("rn_hist2y.png");
-  histr -> Fit("funcFit", "R");
-  c1 -> Print("rn_hist2r.png");
+  c1 -> Print("rn_histy.png");
+  // histr -> Fit("funcFit", "R");
+  // c1 -> Print("rn_hist2r.png");
+
+  TF1 *funcFit2 = new TF1("funcFit2", "gaus*x",0,10);
+  funcFit2 -> SetParameter(0,funcFit -> GetParameter(0));
+  funcFit2 -> SetParameter(1,funcFit -> GetParameter(1));
+  funcFit2 -> SetParameter(2,funcFit -> GetParameter(2));
+  histr -> Fit("funcFit2", "R");
+  c1 -> Print("rn_histr.png");
+  
+  
 
 
 }
