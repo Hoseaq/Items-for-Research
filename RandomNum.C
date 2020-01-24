@@ -29,7 +29,7 @@ void RandomNum()
     }
 
   TCanvas* c1 = new TCanvas("c1", "");
-
+ 
   histx -> Draw();
   c1 -> Print("rn_histx.png");
   histy -> Draw();
@@ -43,9 +43,9 @@ void RandomNum()
   // TH1D* hist2r = new TH1D("hist2r","", 100,0,10);
 
   histx -> Fit("funcFit","R");
-  c1 -> Print("rn_histx.png");
+  c1 -> Print("rn_hist2x.png");
   histy -> Fit("funcFit","R");
-  c1 -> Print("rn_histy.png");
+  c1 -> Print("rn_hist2y.png");
   // histr -> Fit("funcFit", "R");
   // c1 -> Print("rn_hist2r.png");
 
@@ -54,7 +54,7 @@ void RandomNum()
   funcFit2 -> SetParameter(1,funcFit -> GetParameter(1));
   funcFit2 -> SetParameter(2,funcFit -> GetParameter(2));
   histr -> Fit("funcFit2", "R");
-  c1 -> Print("rn_histr.png");
+  c1 -> Print("rn_hist2r.png");
   
   
 
