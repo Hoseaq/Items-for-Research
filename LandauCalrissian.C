@@ -17,7 +17,7 @@ void LandauCalrissian()
   funL->SetParameter(1,0.0);
   funL->SetParameter(2,1.0);
 
-  
+
   for(int i = 0; i<numtrials; ++i)
     {
       double G = funG -> GetRandom();
@@ -31,7 +31,7 @@ void LandauCalrissian()
 
   TCanvas* c1 = new TCanvas("c1", "");
 
-  
+
   histG -> Draw();
   c1 -> Print("lc_histG.png");
   histL -> Draw();
@@ -39,13 +39,13 @@ void LandauCalrissian()
   histC -> Draw();
   c1 -> Print("lc_histC.png");
 
-  TF1 *fgubmel = new TF1("fgumbel","([0]/sqrt(6.28))*TMath::Exp(-0.5*((x-[1])/[2] + TMath::Exp(-(x-[1]/[2]))))",-10,10);
-  
+  TF1 *fgumbel = new TF1("fgumbel","([0]/sqrt(6.28))*TMath::Exp(-0.5*((x-[1])/[2] + TMath::Exp(-(x-[1]/[2]))))",-10,10);
+  fgumbel->SetParameter(0,numtrials/100.0);
+  fgumbel->SetParameter(1,0.0);
+  fgumbel->SetParameter(2,1.0);
+
   TF1 *funcG = new TF1("funcG","gaus",-10, 10);
   TF1 *funcL = new TF1("funcL","landau",-10, 10);
-  // TH1D* hist2x = new TH1D("hist2x","", 200, -10,10);
-  // TH1D* hist2y = new TH1D("hist2y","", 200, -10,10);
-  // TH1D* hist2r = new TH1D("hist2r","", 100,0,10);
 
   histG -> Fit("funcG","R");
   c1 -> Print("lc_hist2G.png");
@@ -57,6 +57,3 @@ void LandauCalrissian()
 
 
 }
-
-
-
