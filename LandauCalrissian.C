@@ -39,6 +39,9 @@ void LandauCalrissian()
   histC -> Draw();
   c1 -> Print("lc_histC.png");
 
+  TF1 *fgubmel = new TF1("fgumbel","([0]/sqrt(6.28))*TMath::Exp(-0.5((x-[1])/[2] + TMath::Exp(-(x-[1]/[2])))",-10,10);
+  
+
 
 }
 
