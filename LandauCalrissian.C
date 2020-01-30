@@ -39,8 +39,21 @@ void LandauCalrissian()
   histC -> Draw();
   c1 -> Print("lc_histC.png");
 
-  TF1 *fgubmel = new TF1("fgumbel","([0]/sqrt(6.28))*TMath::Exp(-0.5((x-[1])/[2] + TMath::Exp(-(x-[1]/[2])))",-10,10);
+  TF1 *fgubmel = new TF1("fgumbel","([0]/sqrt(6.28))*TMath::Exp(-0.5*((x-[1])/[2] + TMath::Exp(-(x-[1]/[2]))))",-10,10);
   
+  TF1 *funcG = new TF1("funcG","gaus",-10, 10);
+  TF1 *funcL = new TF1("funcL","landau",-10, 10);
+  // TH1D* hist2x = new TH1D("hist2x","", 200, -10,10);
+  // TH1D* hist2y = new TH1D("hist2y","", 200, -10,10);
+  // TH1D* hist2r = new TH1D("hist2r","", 100,0,10);
+
+  histG -> Fit("funcG","R");
+  c1 -> Print("lc_hist2G.png");
+  histL -> Fit("funcL","R");
+  c1 -> Print("lc_hist2L.png");
+  histC -> Fit("fgumbel", "R");
+  c1 -> Print("lc_hist2C.png");
+
 
 
 }
