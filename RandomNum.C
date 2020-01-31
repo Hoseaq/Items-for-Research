@@ -29,7 +29,7 @@ void RandomNum()
     }
 
   TCanvas* c1 = new TCanvas("c1", "");
- 
+
   histx -> Draw();
   c1 -> Print("rn_histx.png");
   histy -> Draw();
@@ -55,9 +55,14 @@ void RandomNum()
   funcFit2 -> SetParameter(2,funcFit -> GetParameter(2));
   histr -> Fit("funcFit2", "R");
   c1 -> Print("rn_hist2r.png");
-  
-  
+
+
+  TF1* funbg = new TF1("funbg","(([0]*x)/([2]*[2]))*TMath::Exp(-(x*x+[1]*[1])/(2*[2]*[2]))*TMath::BesselI0((x*[1])/([2]*[2]))",0,20);
+  funbg->SetParameter(0,numtrials/6.28);
+  funbg->SetParameter(1,1.0);
+  funbg->SetParameter(2,1.0);
+  histr -> Fit("funbg", "R");
+  c1 -> Print("rn_histrbg.png");
 
 
 }
-
