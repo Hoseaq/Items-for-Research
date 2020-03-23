@@ -85,8 +85,9 @@ void execute(double sigma_x, double sigma_y, double &mode, double &mean, double 
   histr -> Fit("funcFit2", "R");
   c1 -> Print("rn_hist2r.png");
 
-  // mean = funcFit->GetParameter(1);
-  // sigma = funcFit->GetParameter(2);
+  // --- add these to function later
+  // mean_lg = funcFit->GetParameter(1);
+  // sigma_lg = funcFit->GetParameter(2);
   mode = histr->GetBinCenter(histr->GetMaximumBin());
   mean = histr->GetMean();
   sigma = histr->GetRMS(); // it says RMS but means standard deviation
@@ -99,6 +100,10 @@ void execute(double sigma_x, double sigma_y, double &mode, double &mean, double 
   funbg->SetParameter(2,1.0);
   histr -> Fit("funbg", "R");
   c1 -> Print("rn_histrbg.png");
+
+  // --- add these to function later
+  // mean_bg = funbg->GetParameter(1);
+  // sigma_bg = funbg->GetParameter(2);
 
 
   delete funbg;
