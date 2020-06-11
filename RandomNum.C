@@ -6,15 +6,25 @@ void execute(double,double,double&,double&,double&);
 
 void RandomNum()
 {
-  execute(); // call the function from within the main
-  execute(2,2); // call the function from within the main
+  // execute(); // call the function from within the main
+  // execute(2,2); // call the function from within the main
   double mode=0;
   double mean=0;
   double sigma=0;
-  execute(1,1,mode,mean,sigma);
-  cout << "mode is " << mode << endl;
-  cout << "mean is " << mean << endl;
-  cout << "sigma is " << sigma << endl;
+  //  execute(1,1,mode,mean,sigma);
+
+  ofstream fout("rn_bg_out.txt");
+  for ( int i = 1; i < 10; ++i )
+    {
+      // cout << "mode is " << mode << endl;
+      // cout << "mean is " << mean << endl;
+      // cout << "sigma is " << sigma << endl;
+      double sigma_input = (double)i/10.0;
+      execute(sigma_input,sigma_input,mode,mean,sigma);
+      fout << sigma_input << " " << mode << " " << mean << " " << sigma << endl;
+    }
+  fout.close();
+
 }
 
 // function definition
