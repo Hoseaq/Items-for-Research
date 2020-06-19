@@ -14,12 +14,12 @@ void RandomNum()
   //  execute(1,1,mode,mean,sigma);
 
   ofstream fout("rn_bg_out.txt");
-  for ( int i = 1; i < 10; ++i )
+  for ( int i = 1; i < 100; ++i )
     {
       // cout << "mode is " << mode << endl;
       // cout << "mean is " << mean << endl;
       // cout << "sigma is " << sigma << endl;
-      double sigma_input = (double)i/10.0;
+      double sigma_input = (double)i/100.0;
       execute(sigma_input,sigma_input,mode,mean,sigma);
       fout << sigma_input << " " << mode << " " << mean << " " << sigma << endl;
     }
