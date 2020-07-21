@@ -11,15 +11,17 @@ void RandomNum()
   double mode=0;
   double mean=0;
   double sigma=0;
-  //  execute(1,1,mode,mean,sigma);
+  execute(0.15,0.15,mode,mean,sigma);
 
+  // return;
+  
   ofstream fout("rn_bg_out.txt");
-  for ( int i = 1; i < 100; ++i )
+  for ( int i = 1; i < 150; ++i )
     {
       // cout << "mode is " << mode << endl;
       // cout << "mean is " << mean << endl;
       // cout << "sigma is " << sigma << endl;
-      double sigma_input = (double)i/100.0;
+      double sigma_input = (double)i/1000.0;
       execute(sigma_input,sigma_input,mode,mean,sigma);
       fout << sigma_input << " " << mode << " " << mean << " " << sigma << endl;
     }
@@ -43,12 +45,14 @@ void execute(double sigma_x, double sigma_y)
 void execute(double sigma_x, double sigma_y, double &mode, double &mean, double &sigma)
 {
 
-  TF1* funx = new TF1("funx", "gaus", -10, 10);
-  TF1* funy = new TF1("funy", "gaus", -10, 10);
+  const double max = 0.5;
+  
+  TF1* funx = new TF1("funx", "gaus", -max, max);
+  TF1* funy = new TF1("funy", "gaus", -max, max);
 
-  TH1D* histx = new TH1D("histx", "", 200, -10, 10);
-  TH1D* histy = new TH1D("histy", "", 200, -10, 10);
-  TH1D* histr = new TH1D("histr", "", 100, 0, 10);
+  TH1D* histx = new TH1D("histx", "", 200, -max, max);
+  TH1D* histy = new TH1D("histy", "", 200, -max, max);
+  TH1D* histr = new TH1D("histr", "", 100, 0, max);
 
   funx->SetParameter(0,1.0);
   funx->SetParameter(1,0.0);
@@ -69,17 +73,19 @@ void execute(double sigma_x, double sigma_y, double &mode, double &mean, double 
 
   TCanvas* c1 = new TCanvas("c1", "");
 
+  /*
   histx -> Draw();
   c1 -> Print("rn_histx.png");
   histy -> Draw();
   c1 -> Print("rn_histy.png");
   histr -> Draw();
   c1 -> Print("rn_histr.png");
+  */
 
-  TF1 *funcFit = new TF1("funcFit","gaus",-10, 10);
-  // TH1D* hist2x = new TH1D("hist2x","", 200, -10,10);
-  // TH1D* hist2y = new TH1D("hist2y","", 200, -10,10);
-  // TH1D* hist2r = new TH1D("hist2r","", 100,0,10);
+  TF1 *funcFit = new TF1("funcFit","gaus",-max, max);
+  // TH1D* hist2x = new TH1D("hist2x","", 200, -max,max);
+  // TH1D* hist2y = new TH1D("hist2y","", 200, -1,max);
+  // TH1D* hist2r = new TH1D("hist2r","", max0,0,max);
 
   histx -> Fit("funcFit","R");
   c1 -> Print("rn_hist2x.png");
@@ -88,7 +94,7 @@ void execute(double sigma_x, double sigma_y, double &mode, double &mean, double 
   // histr -> Fit("funcFit", "R");
   // c1 -> Print("rn_hist2r.png");
 
-  TF1 *funcFit2 = new TF1("funcFit2", "gaus*x",0,10);
+  TF1 *funcFit2 = new TF1("funcFit2", "gaus*x",0,max);
   funcFit2 -> SetParameter(0,funcFit -> GetParameter(0));
   funcFit2 -> SetParameter(1,funcFit -> GetParameter(1));
   funcFit2 -> SetParameter(2,funcFit -> GetParameter(2));
