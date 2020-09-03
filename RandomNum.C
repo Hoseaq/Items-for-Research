@@ -21,7 +21,10 @@ void RandomNum()
       // cout << "mode is " << mode << endl;
       // cout << "mean is " << mean << endl;
       // cout << "sigma is " << sigma << endl;
-      double sigma_input = (double)i/1000.0;
+      //double sigma_input = (double)i/1.0e6; // everything is flat
+      //double sigma_input = (double)i/1.0e5; // everything is flat
+      double sigma_input = (double)i/1.0e4; // both behaviors (flat and linear) are apparent
+      //double sigma_input = (double)i/1.0e3; // everything is linear
       execute(sigma_input,sigma_input,mode,mean,sigma);
       fout << sigma_input << " " << mode << " " << mean << " " << sigma << endl;
     }
